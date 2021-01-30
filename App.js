@@ -1,61 +1,47 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+// import { createStackNavigator } from '@react-navigation/stack';
+import Home from './src/pages/Home';
+import Detail from './src/pages/Detail';
 
-import React, { useEffect, useState } from 'react'
-import  {View, Text, Image, SafeAreaView, FlatList } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-export default function App1() {
-  
-  const [personagens, setPersonagens] = useState([])
+const Tab = createBottomTabNavigator();
 
-  useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character', {
-      method: 'GET',
-      headers: {
-        'Accept' : 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      setPersonagens(data.results)
-    })
-  }, [])
-
+function MyTabs() {
   return (
-    <SafeAreaView>
-      <FlatList 
-        data={personagens} 
-        keyExtractor={(personagens) => personagens.name}
-        contentContainerStyle={{ flexGrow : 1 }}
-        renderItem={MostrarPersonagem}
-      />
-    </SafeAreaView>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Detail" component={Detail} />
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer >
+
   )
 }
 
-function MostrarPersonagem(item) {
-  const {name, image } = item.item
+// export default function App() {
+//   return (
+//    <NavigationContainer>
+//      <Stack.Navigator initialRouteName="Home">
 
-  return (
-    <View style={{ flexDirection: 'row' }}>
-        <Image style={{width: 50, height: 50 }} source={{ uri: image }}/>
-        <Text>{name}</Text>
-    </View>
-  )
-}
+//        <Stack.Screen name="Home" component={Home}/>
 
 
+//        <Stack.Screen name="Detail" component={Detail}/>
 
+//      </Stack.Navigator>
+//    </NavigationContainer>
 
-/*
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-
-export default class App1 extends Component {
-  render(){
-    return (
-      <View>
-        <Text>test</Text>
-      </View>
-    );
-  }
-}
-*/
+  // <Tab.Navigator>
+  //     <Tab.Screen name="Home" component={Home} />
+  //     <Tab.Screen name="Detail" component={Detail} />
+  //   </Tab.Navigator>
+//   )  
+// }
