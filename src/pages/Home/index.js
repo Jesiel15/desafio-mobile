@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, SafeAreaView, FlatList, Button, TouchableOpacity } from 'react-native'
 
@@ -21,7 +20,6 @@ export default function Home({ navigation }) {
 
   return (
     <SafeAreaView>
-
       <FlatList
         data={personagens}
         keyExtractor={(personagens) => personagens.name}
@@ -29,54 +27,27 @@ export default function Home({ navigation }) {
         renderItem={({ item }) => {
           return <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Detail', {data:item})
+              navigation.navigate('Detail', { data: item })
             }}
           >
             <MostrarPersonagem data={item}></MostrarPersonagem>
           </TouchableOpacity>;
         }}
-        >
+      >
       </FlatList>
     </SafeAreaView>
   )
 }
 
 function MostrarPersonagem(personagem) {
-  const { name, image } = personagem.data
+  const { name, id, image } = personagem.data
 
   return (
     <View style={{ flexDirection: 'row' }}>
       <Image style={{ width: 50, height: 50 }} source={{ uri: image }} />
       <Text>{name}</Text>
+      <Text>_{id}</Text>
     </View>
 
   )
 }
-
-
-
-
-
-
-
-// function HomeScreen({ navigation }) {
-//   return (
-  //     <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, }}>
-  //       <Text>
-//         Hi I'm your home
-//         </Text>
-//       <TouchableOpacity
-
-//         onPress={() => {
-//           navigation.navigate('Detail')
-//         }}
-//       >
-//         <Text>
-//           Podcast: 0
-//       </Text>
-//       </TouchableOpacity>
-
-
-//     </View>
-//   )
-// }
