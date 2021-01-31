@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 
-export default function Home({ navigation }) {
+import styles from '../../Style/styles.js'
 
+export default function Home({ navigation }) {
   const [personagens, setPersonagens] = useState([])
 
   useEffect(() => {
@@ -40,24 +41,16 @@ export default function Home({ navigation }) {
 }
 
 function MostrarPersonagem(personagem) {
+  // console.log('personagem', personagem)
+
   const { name, image } = personagem.data
+  // console.log('image', origin.image)
 
   return (
-    <View style={{ marginLeft:50,  flexDirection: 'row',  }}>
+    <View style={{ marginLeft: 50, flexDirection: 'row', }}>
       <Image style={{ width: 100, height: 100 }} source={{ uri: image }} />
       <Text style={styles.baseText}>{name}</Text>
     </View>
 
   )
 }
-
-const styles = StyleSheet.create({
-  baseText: {
-    fontSize: 25,
-    fontFamily: "Cochin"
-  },
-  titleText: {
-    fontSize: 30,
-    fontWeight: "bold"
-  }
-});
