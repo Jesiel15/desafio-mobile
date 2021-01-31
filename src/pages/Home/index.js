@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, SafeAreaView, FlatList, Button, TouchableOpacity } from 'react-native'
+import { View, Text, Image, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default function Home({ navigation }) {
 
@@ -40,14 +40,24 @@ export default function Home({ navigation }) {
 }
 
 function MostrarPersonagem(personagem) {
-  const { name, id, image } = personagem.data
+  const { name, image } = personagem.data
 
   return (
-    <View style={{ flexDirection: 'row' }}>
-      <Image style={{ width: 50, height: 50 }} source={{ uri: image }} />
-      <Text>{name}</Text>
-      <Text>_{id}</Text>
+    <View style={{ marginLeft:50,  flexDirection: 'row',  }}>
+      <Image style={{ width: 100, height: 100 }} source={{ uri: image }} />
+      <Text style={styles.baseText}>{name}</Text>
     </View>
 
   )
 }
+
+const styles = StyleSheet.create({
+  baseText: {
+    fontSize: 25,
+    fontFamily: "Cochin"
+  },
+  titleText: {
+    fontSize: 30,
+    fontWeight: "bold"
+  }
+});
