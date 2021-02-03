@@ -15,7 +15,7 @@ export default function Detail(personagem) {
           <MostraStatus data={status}></MostraStatus>
           <Text style={styles.baseText}>Status de Vida: {status}</Text>
         </View>
-        <Text style={styles.baseText}>Genero: {gender}</Text>>
+        <Text style={styles.baseText}>Genero: {gender}</Text>
         <Text style={styles.baseText}>Origem: {origin['name']}</Text>
 
         <Image style={styles.imgDetail} source={{ uri: image }} />
