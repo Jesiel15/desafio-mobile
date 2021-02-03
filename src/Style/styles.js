@@ -92,4 +92,20 @@ export default StyleSheet.create({
     borderRadius: 100
 
   },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    borderColor: 'gray',
+    borderBottomWidth: 5,
+    borderRightWidth: 4,
+    padding: 10,
+    width: 150,
+    flexDirection: 'row',
+    margin: 10,   
+    },
+    textButton: {
+      fontSize: 20,
+      fontWeight: "bold",
+    }
 });

@@ -5,64 +5,51 @@ import styles from '../../Style/styles.js'
 
 export default function Home({ navigation }) {
   const [personagens, setPersonagens] = useState([])
-  // console.log('personagens', personagens)
-  // const [info, setInfo] = useState([])
-  
-  // console.log('info', info.next)
-  
-  useEffect(() => {
-  
-      atualizandoEndpoint('https://rickandmortyapi.com/api/character', setPersonagens)
-      
-      
-      
-    }, [])
-    
 
-  // console.log('personagens.info.next', personagens.info.next)
-  // console.log('personagens.next', personagens.info)
-  // console.log('data.next', personagensfa)
+  useEffect(() => {
+    atualizandoEndpoint('https://rickandmortyapi.com/api/character', setPersonagens)
+  }, [])
+
   return (
     <SafeAreaView style={styles.containerHome}>
-         <Button
-              onPress={() => {atualizandoEndpoint(personagens.info.next, setPersonagens)}}
-      
-              title="Next"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
       <FlatList
         data={personagens.results}
         keyExtractor={(personagens) => personagens.id.toString()}
-        
+
         contentContainerStyle={{ flexGrow: 1 }}
         renderItem={({ item }) => {
           return <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Detail', { data: item })
-          }}
+            onPress={() => {
+              navigation.navigate('Detail', { data: item })
+            }}
           >
             <MostrarPersonagem data={item}></MostrarPersonagem>
-         
-
-          </TouchableOpacity>;
+          </TouchableOpacity>
         }}
       >
       </FlatList>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
+        <TouchableOpacity onPress={() => { atualizandoEndpoint(personagens.info.next, setPersonagens) }}>
+
+          <ButtonValidateNext data={personagens.info}></ButtonValidateNext>
+
+        </TouchableOpacity >
+        <TouchableOpacity onPress={() => { atualizandoEndpoint(personagens.info.prev, setPersonagens) }}>
+
+          <ButtonValidatePrev data={personagens.info}></ButtonValidatePrev>
+
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   )
 }
 
 function MostrarPersonagem(personagem) {
-  
   // console.log('personagem', personagem)
   const { name, image } = personagem.data
-  // console.log('personagem.data', personagem.data.name)
-
-  // console.log('image', origin.image)
+  // console.log('personagem.data', personagem.data)
   return (
     <View style={styles.containerHome1}>
-
       <View style={{ flexDirection: 'row', }}>
         <Image style={styles.imgHome} source={{ uri: image }} />
         <Text style={styles.titleText}>{name}</Text>
@@ -72,7 +59,50 @@ function MostrarPersonagem(personagem) {
   )
 }
 
+function ButtonValidatePrev(info) {
+
+  let prevNull = info && info.data && info.data.prev
+
+  if (prevNull) {
+    return (
+      <View style={styles.button} >
+        <Text style={styles.textButton}>
+          Voltar
+      </Text>
+      </View>
+
+    )
+  } else {
+    return (
+      <View></View>
+    )
+  }
+}
+
+function ButtonValidateNext(info) {
+  let nextNull = info && info.data && info.data.next
+
+  if (nextNull) {
+    const contPag = nextNull && nextNull.replace('https://rickandmortyapi.com/api/character?page=', '')
+
+    return (
+      <View style={styles.button} >
+        <Text style={styles.textButton}>
+          Ver mais >> {contPag}
+        </Text>
+      </View>
+    )
+
+  } else {
+    return (
+      <View></View>
+
+    )
+  }
+}
+
 function atualizandoEndpoint(url, setPersonagens) {
+  console.log('setPersonagens', setPersonagens)
 
   fetch(url, {
     method: 'GET',
@@ -83,68 +113,5 @@ function atualizandoEndpoint(url, setPersonagens) {
     .then(response => response.json())
     .then(data => {
       setPersonagens(data)
-     
     })
 }
-
-// function atualizandoEndpointNext(url, setInfo) {
-
-//   fetch(url, {
-//     method: 'GET',
-//     headers: {
-//       'Accept': 'application/json'
-//     }
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       setInfo(data.results)
-     
-//     })
-// }
-
-// function TestarStatus(personagem) {
-//   // console.log('personagem', personagem.data.status)
-//   const { status } = personagem.data
-//   console.log('status', status)
-//   // console.log('status', status)
-//   // const {status} = personagem.data
-
-//   var test = { status }
-//   if (test = 'Alive') {
-//     console.log('test', test)
-//     return (
-
-//       <View>
-//         <Text style={styles.titleText} >{status}</Text>
-//         <Text style={styles.titleText} >alive</Text>
-//       </View>
-//     )
-//   } else if (test = 'Dead') {
-//     return (
-
-//       <View>
-//         <Text style={styles.titleText} >{status}</Text>
-//         <Text style={styles.titleText} >dead</Text>
-//       </View>
-//     )
-
-//   }else {
-//     return (
-
-//       <View>
-//         <Text style={styles.titleText} >{status}</Text>
-//         <Text style={styles.titleText} >Unknow</Text>
-//       </View>
-//     )
-//   }
-
-
-  // return (
-
-  //   <View>
-  //     <Text style={styles.titleText} >{status}</Text>
-  //     <Text style={styles.titleText} >alive</Text>
-  //   </View>
-  // )
-
-// }

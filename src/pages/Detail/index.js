@@ -1,8 +1,5 @@
-
 import React from 'react'
 import { View, Text, Image, SafeAreaView } from 'react-native'
-
-
 import styles from '../../Style/styles.js'
 
 export default function Detail(personagem) {
@@ -30,7 +27,6 @@ export default function Detail(personagem) {
 }
 
 function MostraStatus(personagem) {
-  const { status } = personagem.data
 
   if (personagem.data == "Alive") {
     return (
