@@ -88,15 +88,14 @@ function ButtonValidateNext(info) {
     return (
       <View style={styles.button} >
         <Text style={styles.textButton}>
-          Ver mais > {contPag}
+          Ver mais
         </Text>
       </View>
     )
 
   } else {
     return (
-      <View></View>
-
+      <></>
     )
   }
 }
