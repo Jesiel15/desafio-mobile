@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native'
-
 import styles from '../../Style/styles.js'
-
 import api from '../../services/api'
 
 export default function Home({ navigation }) {
@@ -10,18 +8,11 @@ export default function Home({ navigation }) {
   const [showButtonPrev, setShowButtonPrev] = useState(false)
 
   useEffect(() => {
-
-    // axios
-    // .get("https://rickandmortyapi.com/api")
-    // .then(response => setUsers(response.data));
-
     atualizandoEndpoint('', setPersonagens)
-
   }, [])
 
   const atualizandoEndpoint = async (url, setPersonagens) => {
     const pageNum = url.replace('https://rickandmortyapi.com/api/character?page=', '')
-    console.log('pageNum', pageNum)
 
     api.get("character?page=" + pageNum)
       .then((response) => {
@@ -31,7 +22,6 @@ export default function Home({ navigation }) {
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-
   }
   const renderItem = ({ item }) => {
     return <TouchableOpacity
@@ -42,6 +32,46 @@ export default function Home({ navigation }) {
       <MostrarPersonagem data={item}></MostrarPersonagem>
     </TouchableOpacity>
   }
+
+  const MostrarPersonagem = (personagem) => {
+    const { name, image } = personagem.data
+    return (
+      <View style={styles.containerHome1}>
+        <View style={{ flexDirection: 'row', }}>
+          <Image style={styles.imgHome} source={{ uri: image }} />
+          <Text style={styles.titleText}>{name}</Text>
+        </View>
+      </View>
+    )
+  }
+
+  const ButtonValidatePrev = () => {
+    return (
+      <View style={styles.button} >
+        <Text style={styles.textButton}>
+          Voltar
+      </Text>
+      </View>
+    )
+  }
+
+  const ButtonValidateNext = (info) => {
+    let nextNull = info && info.data && info.data.next
+    if (nextNull) {
+      return (
+        <View style={styles.button} >
+          <Text style={styles.textButton}>
+            Ver mais
+        </Text>
+        </View>
+      )
+    } else {
+      return (
+        <View></View>
+      )
+    }
+  }
+  
   return (
     <SafeAreaView style={styles.containerHome}>
       <FlatList
@@ -62,68 +92,3 @@ export default function Home({ navigation }) {
     </SafeAreaView>
   )
 }
-
-function MostrarPersonagem(personagem) {
-  const { name, image } = personagem.data
-  return (
-    <View style={styles.containerHome1}>
-      <View style={{ flexDirection: 'row', }}>
-        <Image style={styles.imgHome} source={{ uri: image }} />
-        <Text style={styles.titleText}>{name}</Text>
-      </View>
-    </View>
-
-  )
-}
-
-function ButtonValidatePrev() {
-
-  return (
-    <View style={styles.button} >
-      <Text style={styles.textButton}>
-        Voltar
-      </Text>
-    </View>
-
-  )
-}
-
-function ButtonValidateNext(info) {
-  let nextNull = info && info.data && info.data.next
-
-  if (nextNull) {
-    return (
-      <View style={styles.button} >
-        <Text style={styles.textButton}>
-          Ver mais
-        </Text>
-      </View>
-    )
-  } else {
-    return (
-      <View></View>
-    )
-  }
-
-}
-
-// function atualizandoEndpoint(url, setPersonagens) { 
-//   const pageNum = url.replace('https://rickandmortyapi.com/api/character?page=', '')
-
-//   api.get("character?page=" + pageNum )
-//       .then((response) => setPersonagens(response.data))
-//       .catch((err) => {
-//         console.error("ops! ocorreu um erro" + err);
-//      });
-
-//   // fetch(url, {
-//   //   method: 'GET',
-//   //   headers: {
-//   //     'Accept': 'application/json'
-//   //   }
-//   // })
-//   // .then(response => response.json())
-//   // .then(data => {
-//   //   setPersonagens(data)
-//   // })
-// }

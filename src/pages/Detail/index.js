@@ -7,7 +7,6 @@ export default function Detail(personagem) {
 
   return (
     <SafeAreaView style={styles.containerDetail}>
-
       <View style={styles.containerDetail1}>
         <Text style={styles.titleText}> {name}</Text>
         <Text style={styles.baseText}>Espécie: {species}</Text>
@@ -17,16 +16,13 @@ export default function Detail(personagem) {
         </View>
         <Text style={styles.baseText}>Genero: {gender}</Text>
         <Text style={styles.baseText}>Origem: {origin['name']}</Text>
-
         <Image style={styles.imgDetail} source={{ uri: image }} />
-
       </View>
     </SafeAreaView>
   )
 }
 
 function MostraStatus(personagem) {
-
   if (personagem.data == "Alive") {
     return (
       <View>
