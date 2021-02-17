@@ -5,12 +5,16 @@ export default StyleSheet.create({
     fontSize: 25,
     fontFamily: "Cochin",
     color: '#9E9E9E'
+    
   },
 
   titleText: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     color: '#fff',
+    // textAlign: 'left',
+    padding: 15,
+    flex: 1,
   },
 
   imgDetail: {
@@ -20,16 +24,16 @@ export default StyleSheet.create({
   },
 
   imgHome: {
-    width: 100,
-    height: 100,
-    margin: 3,
-    borderRadius: 20
+    width: 120,
+    height: 120,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   
   containerHome1: {
     borderRadius: 25,
     flex: 1,
-    padding: 20,
+    // padding: 20,
     margin: 3,
     backgroundColor: '#3C3E44',
     justifyContent: 'center',
