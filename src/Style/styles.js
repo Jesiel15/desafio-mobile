@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   baseText: {
-    fontSize: 25,
+    fontSize: 17,
     fontFamily: "Cochin",
-    color: '#9E9E9E'
-    
+    color: '#9E9E9E',
+    paddingTop: 3
   },
 
   titleText: {
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: '#fff',
     // textAlign: 'left',
-    padding: 15,
+    // paddingLeft: 15,
     flex: 1,
   },
 
@@ -72,7 +72,7 @@ export default StyleSheet.create({
   statusAlive: {
     width: 20,
     height: 20,
-    margin: 7,
+    margin: 4,
     flex: 1,
     backgroundColor: '#08C414',
     borderRadius: 100,

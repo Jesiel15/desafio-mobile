@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native'
 import styles from '../../Style/styles.js'
 import api from '../../services/api'
+import ShowStatus from '../../components/ShowStatus'
 
 export default function Home({ navigation }) {
   const [personagens, setPersonagens] = useState([])
@@ -34,13 +35,21 @@ export default function Home({ navigation }) {
   }
 
   const MostrarPersonagem = (personagem) => {
-    const { name, image } = personagem.data
+    const { name, image, status } = personagem.data
+    // console.log('test', status)
     return (
       <View style={styles.containerHome1}>
         <View style={{ flexDirection: 'row', }}>
           <Image style={styles.imgHome} source={{ uri: image }} />
-          <Text style={styles.titleText}>{name}</Text>
+          <View style={styles.containerHome1}>
+            <Text style={styles.titleText}>{name}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <ShowStatus data={status}></ShowStatus>
+              <Text style={styles.baseText}>Status de vida: {status}</Text>
+            </View>
+          </View>
         </View>
+
       </View>
     )
   }
@@ -71,7 +80,7 @@ export default function Home({ navigation }) {
       )
     }
   }
-  
+  // console.log('personagens.info'+'\n', personagens.results)
   return (
     <SafeAreaView style={styles.containerHome}>
       <FlatList
