@@ -9,15 +9,15 @@ export default function Detail(personagem) {
   return (
     <SafeAreaView style={styles.containerDetail}>
       <View style={styles.containerDetail1}>
+        <Image style={styles.imgDetail} source={{ uri: image }} />
         <Text style={styles.titleText}> {name}</Text>
-        <Text style={styles.baseText}>Espécie: {species}</Text>
+        <Text style={styles.baseTextDetail}>Espécie: {species}</Text>
         <View style={{ flexDirection: 'row' }}>
           <ShowStatus data={status}></ShowStatus>
           <Text style={styles.baseText}>Status de Vida: {status}</Text>
         </View>
         <Text style={styles.baseText}>Genero: {gender}</Text>
         <Text style={styles.baseText}>Origem: {origin['name']}</Text>
-        <Image style={styles.imgDetail} source={{ uri: image }} />
       </View>
     </SafeAreaView>
   )
