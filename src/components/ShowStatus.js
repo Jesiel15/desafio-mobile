@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import styles from '../Style/styles'
+import styles from './Styles'
 
 function ShowStatus(status) {
     if (status.data === "Alive") {
@@ -8,7 +8,6 @@ function ShowStatus(status) {
         <View style={styles.statusAlive}>
           <View ></View>
         </View>
-        
       )
     } else if (status.data === "Dead") {
         return (

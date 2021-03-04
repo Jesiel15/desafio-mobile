@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
-import styles from '../../Style/styles.js'
+import styles from './Styles';
 import api from '../../services/api'
 import ShowStatus from '../../components/ShowStatus'
 
@@ -59,7 +59,7 @@ export default function Home({ navigation }) {
       <View style={styles.button} >
         <Text style={styles.textButton}>
           Voltar
-      </Text>
+        </Text>
       </View>
     )
   }
@@ -80,7 +80,7 @@ export default function Home({ navigation }) {
       )
     }
   }
-  // console.log('personagens.info'+'\n', personagens.results)
+  
   return (
     <SafeAreaView style={styles.containerHome}>
       <FlatList
