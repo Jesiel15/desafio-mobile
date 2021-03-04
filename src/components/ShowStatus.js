@@ -5,20 +5,21 @@ import styles from '../Style/styles'
 function ShowStatus(status) {
     if (status.data === "Alive") {
         return (
-            <View>
-          <Text style={styles.statusAlive}></Text>
+        <View style={styles.statusAlive}>
+          <View ></View>
         </View>
+        
       )
     } else if (status.data === "Dead") {
         return (
-            <View>
-          <Text style={styles.statusDead}></Text>
+          <View style={styles.statusDead}>
+          <View ></View>
         </View>
       )
     } else {
         return (
-            <View>
-          <Text style={styles.statusUnknown}></Text>
+          <View style={styles.statusUnknown}>
+          <View ></View>
         </View>
       )
     }

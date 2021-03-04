@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native'
+import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
 import styles from '../../Style/styles.js'
 import api from '../../services/api'
 import ShowStatus from '../../components/ShowStatus'
